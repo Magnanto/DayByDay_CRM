@@ -1,6 +1,9 @@
 @extends('layouts.master')
 
 @section('content')
+    @if(session('message'))
+        <p>{{ session('message') }}</p>
+    @endif
     <h1>{{ __('Import CSV') }}</h1>
     <form action="{{ route('database.import') }}" method="POST" enctype="multipart/form-data">
         @csrf

@@ -1,4 +1,6 @@
 <?php
+use App\Http\Controllers\DatabaseController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -226,6 +228,18 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/create', 'AbsenceController@create')->name('absence.create');
         Route::post('/', 'AbsenceController@store')->name('absence.store');
         Route::delete('/{absence}', 'AbsenceController@destroy')->name('absence.destroy');
+    });
+
+    /**
+     * Database
+     */
+    Route::group(['prefix' =>'databases'],function(){
+        Route::get('/', [DatabaseController::class, 'index'])->name('database.index');
+        Route::post('/import', [DatabaseController::class, 'import'])->name('database.import');
+        Route::get('/reset-index', [DatabaseController::class, 'reset_index'])->name('database.reset_index');
+        Route::get('/reset-csv', [DatabaseController::class, 'reset'])->name('database.reset');
+
+
     });
 });
 
