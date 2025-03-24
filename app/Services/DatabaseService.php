@@ -24,7 +24,7 @@ class DatabaseService
         $query = "SELECT table_name
                   FROM information_schema.tables
                   WHERE table_schema = 'daybyday'
-                  AND table_name NOT IN ('" . implode("','", $excluded_tables) . "')"; // Modify the query to exclude tables
+                  AND table_name  IN ('" . implode("','", $excluded_tables) . "')"; // Modify the query to exclude tables
 
         $tables = DB::select($query);
 

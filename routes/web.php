@@ -1,6 +1,6 @@
 <?php
 use App\Http\Controllers\DatabaseController;
-
+use App\Api\controller\ClientController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -241,6 +241,13 @@ Route::group(['middleware' => ['auth']], function () {
 
 
     });
+
+    /**
+     * Client Api
+     */
+//    Route::group(['prefix'=>'/api/client'],function(){
+//        Route::get('/',[ClientController::class, 'getAllClients'])->name('api.client.getAll');
+//    });
 });
 
 Route::group(['middleware' => ['auth']], function () {

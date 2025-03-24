@@ -32,6 +32,7 @@
             </div>
         </div>
         {{csrf_field()}}
+        <input type="hidden" name="estimated_amount" value="{{$amountDue->getBigDecimalAmount()}}">
         <div class="form-group col-lg-12" >
             <label for="source" class="thin-weight">@lang('Description')</label>
             <textarea name="description" id="description" class="form-control"></textarea>
