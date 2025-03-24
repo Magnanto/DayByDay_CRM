@@ -22,4 +22,6 @@ class InvoiceController
         $invoiceStatus=InvoiceStatus::fromStatus($request->status)->getDisplayValue();
         return response()->json($invoiceStatus);
     }
+
+    
 }
