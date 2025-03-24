@@ -34,14 +34,20 @@ class DatabaseController extends Controller
         return redirect()->back();
     }
 
-    public function import(Request $request){
-        $this->validate($request, [
+    public function import(Request $request): RedirectResponse
+    {
+        $request->validate([
             'file' => 'required|file|mimes:csv,txt',
+            'table_name' => 'required|string',
         ]);
 
         $file = $request->file('file');
-        $table_name= $request->get('table_name');
-        if()
+        $table_name = $request->input('table_name');
+
+        $message = $this->databaseService->import($file, $table_name);
+        $request->session()->flash('message', $message);
+
+        return redirect()->back();
     }
 }
 ?>

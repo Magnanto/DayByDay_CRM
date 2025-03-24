@@ -54,6 +54,11 @@ class PaymentsController extends Controller
             return redirect()->route('invoices.show', $invoice->external_id);
         }
 
+        if ($request->amount > $request->estimated_amount) {
+            session()->flash('flash_message_warning', __("Paid amount exceeds the estimated amount"));
+            return redirect()->route('invoices.show', $invoice->external_id);
+        }
+
         $payment = Payment::create([
             'external_id' => Uuid::uuid4()->toString(),
             'amount' => $request->amount * 100,
@@ -75,3 +80,4 @@ class PaymentsController extends Controller
         return redirect()->back();
     }
 }
+

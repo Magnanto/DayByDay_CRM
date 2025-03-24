@@ -1,4 +1,6 @@
 <?php
+use App\Http\Controllers\DatabaseController;
+use App\Api\controller\ClientController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -227,6 +229,25 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/', 'AbsenceController@store')->name('absence.store');
         Route::delete('/{absence}', 'AbsenceController@destroy')->name('absence.destroy');
     });
+
+    /**
+     * Database
+     */
+    Route::group(['prefix' =>'databases'],function(){
+        Route::get('/', [DatabaseController::class, 'index'])->name('database.index');
+        Route::post('/import', [DatabaseController::class, 'import'])->name('database.import');
+        Route::get('/reset-index', [DatabaseController::class, 'reset_index'])->name('database.reset_index');
+        Route::get('/reset-csv', [DatabaseController::class, 'reset'])->name('database.reset');
+
+
+    });
+
+    /**
+     * Client Api
+     */
+//    Route::group(['prefix'=>'/api/client'],function(){
+//        Route::get('/',[ClientController::class, 'getAllClients'])->name('api.client.getAll');
+//    });
 });
 
 Route::group(['middleware' => ['auth']], function () {

@@ -1,0 +1,6 @@
+external_id,name,email,password,address,primary_number,secondary_number,image_path,remember_token,language,deleted_at,created_at,updated_at
+ext123,John Doe,john.doe@example.com,$2y$10$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36Z7Qj6J/3W4x5Z9E6yF7aW,123 Main St,555-1234,555-5678,/images/john.jpg,,EN,,2023-01-01 12:00:00,2023-01-01 12:00:00
+ext124,Jane Smith,jane.smith@example.com,$2y$10$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36Z7Qj6J/3W4x5Z9E6yF7aW,456 Elm St,555-8765,555-4321,/images/jane.jpg,,EN,,2023-01-02 12:00:00,2023-01-02 12:00:00
+ext125,Bob Johnson,bob.johnson@example.com,$2y$10$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36Z7Qj6J/3W4x5Z9E6yF7aW,789 Oak St,555-1122,555-3344,/images/bob.jpg,,EN,,2023-01-03 12:00:00,2023-01-03 12:00:00
+ext126,Alice Williams,alice.williams@example.com,$2y$10$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36Z7Qj6J/3W4x5Z9E6yF7aW,321 Pine St,555-5566,555-7788,/images/alice.jpg,,EN,,2023-01-04 12:00:00,2023-01-04 12:00:00
+ext127,Charlie Brown,charlie.brown@example.com,$2y$10$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36Z7Qj6J/3W4x5Z9E6yF7aW,654 Maple St,555-9988,555-7766,/images/charlie.jpg,,EN,,2023-01-05 12:00:00,2023-01-05 12:00:00

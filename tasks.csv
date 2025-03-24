@@ -1,0 +1,4 @@
+external_id,title,description,status_id,user_assigned_id,user_created_id,client_id,project_id,deadline,deleted_at,created_at,updated_at
+EXT123,Task Title 1,Description of task 1,1,2,3,4,5,2023-10-01,,2023-09-01,2023-09-02
+EXT124,Task Title 2,Description of task 2,2,3,4,5,,2023-11-01,,2023-10-01,2023-10-02
+EXT125,Task Title 3,Description of task 3,3,4,5,6,7,2023-12-01,,2023-11-01,2023-11-02
