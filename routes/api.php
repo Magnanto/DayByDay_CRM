@@ -72,6 +72,11 @@ Route::group(['prefix'=>'/leads'],function() {
     Route::get('/date/month/now',[\App\Api\controller\LeadsController::class, 'getAllThisMonth'])->name('api.leads.getAll');
 });
 
+Route::group(['prefix'=>'/remises'],function() {
+    Route::get('/',[\App\Api\controller\RemiseControler::class, 'getOne'])->name('api.remise.getOne');
+    Route::post('/update',[\App\Api\controller\RemiseControler::class, 'update'])->name('api.remise.update');
+});
+
 Route::get("/dashboard",[\App\Api\controller\DashboardController::class, 'getTotals'])->name('api.dashboard.getTotals');
 //Route::get('users',[\App\Api\controller\ClientController::class, 'getAllClients'])->name('test');
 
