@@ -13,10 +13,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Cashier\Billable;
 use Carbon\Carbon;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use Notifiable, EntrustUserTrait,  SoftDeletes, Billable;
+    use Notifiable, EntrustUserTrait,  SoftDeletes, Billable, Notifiable,HasApiTokens;
 
     public function restore()
     {
@@ -93,10 +94,10 @@ class User extends Authenticatable
         return $this->hasMany(Absence::class);
     }
 
-    public function tokens()
-    {
-        return $this->hasMany(Token::class, 'user_id', 'id');
-    }
+//    public function tokens()
+//    {
+//        return $this->hasMany(Token::class, 'user_id', 'id');
+//    }
 
     public function canChangePasswordOn(User $user)
     {

@@ -57,8 +57,11 @@ Route::group(['prefix'=>'/payments'],function(){
 });
 
 Route::group(['prefix'=>'/users'],function(){
-    Route::get('/',[\App\Api\controller\UsersController::class, 'getAllUsers'])->name('api.users.getAll');
+    Route::get('/',[\AApp\Api\controller\UsersController::class, 'getAllUsers'])->name('api.users.getAll');
     Route::get('/email/{email}',[\App\Api\controller\UsersController::class,'getByMail'])->name('api.users.getByMail');
+    Route::post('/auth', [\App\Http\Controllers\AuthController::class, 'logins']);
 });
+
 //Route::get('users',[\App\Api\controller\ClientController::class, 'getAllClients'])->name('test');
+
 
