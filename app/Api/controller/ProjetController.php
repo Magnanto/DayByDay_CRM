@@ -23,15 +23,11 @@ class ProjetController extends Controller
     }
 
     public function count(){
-        $projets=Project::all();
-        if($projets->isNotEmpty()){
-            $count=$projets->count();
-            return response()->json($count);
-        }
-        else{
-            $count=0;
-            return response()->json($count);
-        }
+        $count = Project::count();
+        return response()->json($count);
     }
 
+
+
 }
+

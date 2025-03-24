@@ -16,4 +16,9 @@ class TaskController extends Controller
         $task=Task::find($id);
         return response()->json($task);
     }
+
+    public function count(){
+        $count = Task::count();
+        return response()->json(['count' => $count]);
+    }
 }

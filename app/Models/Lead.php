@@ -165,4 +165,12 @@ class Lead extends Model implements Commentable
         }
         return true;
     }
+    
+    public function getThisMonth()
+    {
+        return self::whereYear('created_at', date('Y'))
+                   ->whereMonth('created_at', date('m'))
+                   ->get();
+    }
 }
+
