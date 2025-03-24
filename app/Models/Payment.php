@@ -32,6 +32,7 @@ class Payment extends Model
      *
      * @return string
      */
+
     public function getRouteKeyName()
     {
         return 'external_id';
@@ -45,5 +46,9 @@ class Payment extends Model
     public function invoice()
     {
         return $this->belongsTo(Invoice::class);
+    }
+
+    public function getByExternalId($externalId){
+        return self::where('external_id',$externalId)->first();
     }
 }

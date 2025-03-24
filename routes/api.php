@@ -28,12 +28,13 @@ Route::group(['prefix'=>'/clients'],function(){
 Route::group(['prefix'=>'/projets'],function(){
     Route::get('/',[\App\Api\controller\ProjetController::class, 'getAllProjets'])->name('api.projets.getAll');
     Route::get('/{id}',[\App\Api\controller\ProjetController::class,'getById'])->name('api.projets.getById');
-
+    Route::get('/count',[\App\Api\controller\ProjetController::class, 'count'])->name('api.projets.count');
 });
 
 Route::group(['prefix'=>'/tasks'],function(){
     Route::get('/',[\App\Api\controller\TaskController::class, 'getAllTasks'])->name('api.tasks.getAll');
     Route::get('/{id}',[\App\Api\controller\TaskController::class,'getById'])->name('api.tasks.getById');
+    Route::get('/count',[\App\Api\controller\TaskController::class, 'count'])->name('api.tasks.count');
 });
 
 Route::group(['prefix'=>'/offers'],function(){
@@ -49,19 +50,28 @@ Route::group(['prefix'=>'/offers'],function(){
 Route::group(['prefix'=>'/invoices'],function(){
     Route::get('/',[\App\Api\controller\InvoiceController::class, 'getAllInvoice'])->name('api.invoice.getAll');
     Route::get('/{id}',[\App\Api\controller\InvoiceController::class,'getById'])->name('api.invoice.getById');
+    Route::get('/statues',[\App\Api\controller\InvoiceController::class,'getInvoiceStatus'])->name('api.invoice.getInvoiceStatus');
+
 });
 
 Route::group(['prefix'=>'/payments'],function(){
     Route::get('/',[\App\Api\controller\PaymentController::class, 'getAllPayment'])->name('api.payment.getAll');
     Route::get('/{id}',[\App\Api\controller\PaymentController::class,'getById'])->name('api.payment.getById');
+    Route::get('/{id}/invoice',[\App\Api\controller\PaymentController::class,'getPaymentInvoice'])->name('api.payment.getPaymentInvoice');
+    Route::post('/update/{id}',[\App\Api\controller\PaymentController::class,'update'])->name('api.payment.updatePayment');
+    Route::get('delete/{id}',[\App\Api\controller\PaymentController::class,'delete'])->name('api.payment.deletePayment');
 });
 
 Route::group(['prefix'=>'/users'],function(){
-    Route::get('/',[\AApp\Api\controller\UsersController::class, 'getAllUsers'])->name('api.users.getAll');
+    Route::get('/',[\App\Api\controller\UsersController::class, 'getAllUsers'])->name('api.users.getAll');
     Route::get('/email/{email}',[\App\Api\controller\UsersController::class,'getByMail'])->name('api.users.getByMail');
     Route::post('/auth', [\App\Http\Controllers\AuthController::class, 'logins']);
 });
 
-//Route::get('users',[\App\Api\controller\ClientController::class, 'getAllClients'])->name('test');
+Route::group(['prefix'=>'/leads'],function() {
+    Route::get('/date/month/now',[\App\Api\controller\LeadsController::class, 'getAllThisMonth'])->name('api.leads.getAll');
+});
 
+Route::get("/dashboard",[\App\Api\controller\DashboardController::class, 'getTotals'])->name('api.dashboard.getTotals');
+//Route::get('users',[\App\Api\controller\ClientController::class, 'getAllClients'])->name('test');
 
