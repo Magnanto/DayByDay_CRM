@@ -37,15 +37,22 @@ class DatabaseController extends Controller
     public function import(Request $request): RedirectResponse
     {
         $request->validate([
-            'file' => 'required|file|mimes:csv,txt',
-            'table_name' => 'required|string',
+            'projectsFile' => 'required|file|mimes:csv,txt',
+            'tasksFile' => 'required|file|mimes:csv,txt',
+            'leadsFile' => 'required|file|mimes:csv,txt',
         ]);
 
-        $file = $request->file('file');
-        $table_name = $request->input('table_name');
+        $projectsFile = $request->file('projectsFile');
+        $tasksFile = $request->file('tasksFile');
+        $leadsFile = $request->file('leadsFile');
 
-        $message = $this->databaseService->import($file, $table_name);
-        $request->session()->flash('message', $message);
+        $message = $this->databaseService->import($projectsFile, $tasksFile, $leadsFile);
+
+        if (is_array($message)) {
+            $request->session()->flash('erreurs', $message);
+        } else {
+            $request->session()->flash('message', $message);
+        }
 
         return redirect()->back();
     }

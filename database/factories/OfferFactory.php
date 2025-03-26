@@ -12,9 +12,11 @@ use Ramsey\Uuid\Uuid;
 $factory->define(Offer::class, function (Faker $faker) {
     return [
         'external_id' => Uuid::uuid4()->toString(),
-        'client_id' => factory(Client::class),
+        'client_id' => null,
+//        'client_id' => factory(Client::class),
         'status' => OfferStatus::inProgress()->getStatus(),
-        'source_id' => factory(Lead::class),
+        'source_id' => null,
+//        'source_id' => factory(Lead::class),
         'source_type' => Lead::class,
     ];
 });

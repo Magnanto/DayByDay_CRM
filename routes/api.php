@@ -33,25 +33,25 @@ Route::group(['prefix'=>'/projets'],function(){
 
 Route::group(['prefix'=>'/tasks'],function(){
     Route::get('/',[\App\Api\controller\TaskController::class, 'getAllTasks'])->name('api.tasks.getAll');
-    Route::get('/{id}',[\App\Api\controller\TaskController::class,'getById'])->name('api.tasks.getById');
     Route::get('/count',[\App\Api\controller\TaskController::class, 'count'])->name('api.tasks.count');
+    Route::get('/{id}',[\App\Api\controller\TaskController::class,'getById'])->name('api.tasks.getById');
 });
 
 Route::group(['prefix'=>'/offers'],function(){
     Route::get('/',[\App\Api\controller\OfferController::class, 'getAllOffers'])->name('api.offers.getAll');
-    Route::get('/{id}',[\App\Api\controller\OfferController::class,'getById'])->name('api.offers.getById');
     Route::get('/status/won',[\App\Api\controller\OfferController::class,'getWon'])->name('api.offers.getWon');
     Route::get('/status/progress',[\App\Api\controller\OfferController::class,'getInProgess'])->name('api.offers.getInProgress');
     Route::get('/status/lost',[\App\Api\controller\OfferController::class,'getLost'])->name('api.offers.getLost');
     Route::get('/count',[\App\Api\controller\OfferController::class, 'countOffer'])->name('api.offers.count');
+    Route::get('/{id}',[\App\Api\controller\OfferController::class,'getById'])->name('api.offers.getById');
 
 });
 
 Route::group(['prefix'=>'/invoices'],function(){
     Route::get('/',[\App\Api\controller\InvoiceController::class, 'getAllInvoice'])->name('api.invoice.getAll');
-    Route::get('/{id}',[\App\Api\controller\InvoiceController::class,'getById'])->name('api.invoice.getById');
     Route::get('/statues',[\App\Api\controller\InvoiceController::class,'getInvoiceStatus'])->name('api.invoice.getInvoiceStatus');
-
+    Route::get('/turnover',[\App\Api\controller\InvoiceController::class,'getMontantInvoiceMensuelle'])->name('api.invoice.getTurnOver');
+    Route::get('/{id}',[\App\Api\controller\InvoiceController::class,'getById'])->name('api.invoice.getById');
 });
 
 Route::group(['prefix'=>'/payments'],function(){
@@ -66,6 +66,7 @@ Route::group(['prefix'=>'/users'],function(){
     Route::get('/',[\App\Api\controller\UsersController::class, 'getAllUsers'])->name('api.users.getAll');
     Route::get('/email/{email}',[\App\Api\controller\UsersController::class,'getByMail'])->name('api.users.getByMail');
     Route::post('/auth', [\App\Http\Controllers\AuthController::class, 'logins']);
+    Route::get('/{id}',[\App\Api\controller\UsersController::class, 'getById'])->name('api.users.getById');
 });
 
 Route::group(['prefix'=>'/leads'],function() {
@@ -79,4 +80,5 @@ Route::group(['prefix'=>'/remises'],function() {
 
 Route::get("/dashboard",[\App\Api\controller\DashboardController::class, 'getTotals'])->name('api.dashboard.getTotals');
 //Route::get('users',[\App\Api\controller\ClientController::class, 'getAllClients'])->name('test');
+Route::get("/status/{id}",[\App\Api\controller\StatusController::class, 'getById'])->name('api.status.getById');
 

@@ -1,25 +1,35 @@
 @extends('layouts.master')
 
 @section('content')
-    @if(session('message'))
-        <p>{{ session('message') }}</p>
-    @endif
     <h1>{{ __('Import CSV') }}</h1>
     <form action="{{ route('database.import') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <label>Fichier CSV à importer</label>
-        <input type="file" name="file" required>
+        <label>Fichier Project CSV</label>
         <br>
-        <label>Nom de la table</label>
-        <input type="text" name="table_name" placeholder="Table Name" required>
+        <input type="file" name="projectsFile" required>
+        <br><br>
+        <label>Fichier Tasks CSV</label>
+        <br>
+        <input type="file" name="tasksFile" required>
+        <br><br>
+        <label>Fichier Leads CSV</label>
+        <br>
+        <input type="file" name="leadsFile" required>
         <br>
         <button type="submit">Importer</button>
     </form>
-
-    <h2>{{ __('Database Tables') }}</h2>
-    <ul>
-        @foreach($tables as $table)
-            <li>{{ $table }}</li>
-        @endforeach
-    </ul>
+    @if(session('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+    @endif
+    @if(session('erreurs'))
+        <div class="alert alert-danger">
+            <ul>
+                @foreach (session('erreurs') as $erreur)
+                    <li>{{ $erreur }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 @endsection

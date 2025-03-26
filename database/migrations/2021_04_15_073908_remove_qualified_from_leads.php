@@ -14,7 +14,7 @@ class RemoveQualifiedFromLeads extends Migration
     public function up()
     {
         Schema::table('leads', function (Blueprint $table) {
-            $table->removeColumn('qualified');
+            $table->dropColumn('qualified');
         });
     }
 
@@ -26,7 +26,9 @@ class RemoveQualifiedFromLeads extends Migration
     public function down()
     {
         Schema::table('leads', function (Blueprint $table) {
-            $table->boolean("qualified")->index()->after("user_created_id")->default(false);
+            if (!Schema::hasColumn('leads', 'qualified')) {
+                $table->boolean('qualified')->default(false)->after('user_created_id');
+            }
         });
     }
 }
