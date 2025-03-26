@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Remise;
 use View;
 use App\Billy;
 use Datatables;
@@ -121,6 +122,11 @@ class InvoicesController extends Controller
         if ($request->sendMail && $request->invoiceContact) {
             $attachPdf = $request->attachPdf ? true : false;
             $invoice->sendMail($request->subject, $request->message, $request->recipientMail, $attachPdf);
+        }
+        if($request->has('addPromotion') && $request->addPromotion){
+            $remise=Remise::first();
+            $invoice->has_remise=true;
+            $invoice->remise=$remise->discount;
         }
 
         $invoice->sent_at =  Carbon::now();

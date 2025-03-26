@@ -210,6 +210,7 @@
 
                 {{ __('Are you sure?') }}
                     </h4>
+
                     <p>{{ __('Once a invoice has been send, no new invoice lines can be added') }}</p>
                  {!! Form::open([
                     'method' => 'post',
@@ -247,6 +248,10 @@
                     @lang('Message') (@lang("[link-to-pdf], will be replaced when invoice is send, with the actual link to the PDF"))
 
                     <textarea name="message" id="" rows="13" class="form-control">@lang("Dear :name\n\nThank you, for being a customer at :company\n\nHere is you Invoice on :price\n\nClick the link below to download the invoice\n\n[link-to-pdf]\n\nRegards\n---\n:company", ["name" => $invoice->client->primaryContact->name, "company" => $companyName, "price" => $finalPrice])</textarea>
+                </div>
+                <div id="promotionBox">
+                    <label for="addPromotion" class="control-label" id="addPromotionCheckboxLabel">@lang('Do you want to add a remise ?')</label>
+                    <input type="checkbox" name="addPromotion" id="addPromotionCheckbox">
                 </div>
                 <input type="submit" value="{{__('Send invoice')}}" class="btn btn-md btn-brand btn-full-width closebtn" id="close-invoice">
             {!! Form::close() !!}

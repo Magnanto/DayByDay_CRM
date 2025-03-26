@@ -23,6 +23,9 @@ class Invoice extends Model
     use SoftDeletes;
 
     const STATUS_SENT = "sent";
+    /**
+     * @var mixed|true
+     */
 
     protected $fillable = [
         'status',
@@ -35,6 +38,8 @@ class Invoice extends Model
         'source_type',
         'external_id',
         'offer_id',
+        'has_remise',
+        'remise'
     ];
 
     protected $dates = [

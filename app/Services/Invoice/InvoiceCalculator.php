@@ -42,6 +42,10 @@ class InvoiceCalculator
             $price += $invoiceLine->quantity * $invoiceLine->price;
         }
 
+        if($this->invoice->has_remise){
+            $price=$price-($price*($this->invoice->remise/100));
+        }
+
         return new Money($price);
     }
 
@@ -52,6 +56,9 @@ class InvoiceCalculator
 
         foreach ($invoiceLines as $invoiceLine) {
             $price += $invoiceLine->quantity * $invoiceLine->price;
+        }
+        if($this->invoice->has_remise){
+            $price=$price-($price*($this->invoice->remise/100));
         }
         return new Money($price / $this->tax->multipleVatRate());
     }
